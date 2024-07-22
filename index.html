@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shembuj lakimi të përemrave pronorë</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            body {
+                font-size: 14pt;
+            }
+
+            h1{
+                @apply text-4xl my-3;
+            }
+
+            select {
+                @apply p-1 rounded-md bg-teal-100 text-teal-800 flex-1;
+            }
+
+            .quattrocento-regular {
+                font-family: "Quattrocento", serif;
+                font-weight: 300;
+                font-style: normal;
+            }
+
+            body {
+                @apply quattrocento-regular;
+            }
+
+            a {
+                @apply text-sky-700;
+            }
+
+            div.ex {
+                @apply my-3 p-3 rounded-md;
+            }
+
+            div.ex > ul {
+                @apply my-3;
+            }
+
+            div.ex > ul > li > div:nth-of-type(1) {
+                @apply flex items-center justify-between md:justify-start;
+            }
+            div.ex > ul > li > div:nth-of-type(2) {
+                @apply text-sm text-amber-700;
+            }
+
+            div.ex > ul > li > div > a > svg {
+                @apply w-6 h-6;
+            }
+            b {
+                @apply font-semibold text-amber-700;
+            }
+                
+        }
+    </style>
+</head>
+
+
+<body x-data="App()">
+    <div class="px-3">
+        <h1>Shembuj lakimi të përemrave pronorë</h1>
+        <i class="text-sm">Mbështetur tek dokumenti <a
+                href="https://www.scribd.com/document/627554843/Lakimi-i-Peremrit-Pronor-i-Plotesuar"
+                target="_blank">https://www.scribd.com/document/627554843/Lakimi-i-Peremrit-Pronor-i-Plotesuar</a> i
+            botuar
+            nga Mirela Pacani</i>
+
+            <div class="my-3 flex flex-wrap gap-3">
+                <select x-model="veta">
+                    <option value="të tri vetat">të tri vetat</option>
+                    <option value="veta e parë">veta e parë</option>
+                    <option value="veta e dytë">veta e dytë</option>
+                    <option value="veta e tretë">veta e tretë</option>
+                </select>   
+                <select x-model="gjinia">
+                    <option value="të dy gjinitë">të dy gjinitë</option>
+                    <option value="gjinia femërore">gjinia femërore</option>
+                    <option value="gjinia mashkullore">gjinia mashkullore</option>                    
+                </select>   
+                <select x-model="rasa">
+                    <option value="të gjitha rasat">të gjitha rasat</option>                
+                    <option value="rasa emërore">rasa emërore</option>                
+                    <option value="rasa gjinore">rasa gjinore</option>                
+                    <option value="rasa dhanore">rasa dhanore</option>                
+                    <option value="rasa kallëzore">rasa kallëzore</option>                
+                    <option value="rasa rrjedhore">rasa rrjedhore</option>                
+                </select>   
+                <select x-model="prona">
+                    <option value="prona në cilindo numër">prona në cilindo numër</option>                
+                    <option value="prona në numrin njëjës">prona në numrin njëjës</option>                
+                    <option value="prona në numrin shumës">prona në numrin shumës</option>       
+                </select>  
+                <select x-model="pronari">
+                    <option value="pronari në cilindo numër">pronari në cilindo numër</option>
+                    <option value="pronari në njëjës">pronari në njëjës</option>                
+                    <option value="pronari në shumës">pronari në shumës</option>                      
+                </select>  
+            </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3" x-show="veta == 'të tri vetat' || veta == 'veta e parë'">
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miku im], Fisniku, ka tre fëmijë.', 'veta e parë, gjinia mashkullore, rasa emërore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Nëna [e] (babai [i]) [mikut tim] ka punuar në universitet.', 'veta e parë, gjinia mashkullore, rasa gjinore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikut tim] i pëlqejnë komeditë.', 'veta e parë, gjinia mashkullore, rasa dhanore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikun tim] e njoh që nga fëmijëria.', 'veta e parë, gjinia mashkullore, rasa kallëzore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë e kam dhuratë [prej mikut tim].', 'veta e parë, gjinia mashkullore, rasa rrjedhore, prona në numrin njëjës, pronari njëjës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikja ime], Zana, jeton në Prishtinë.', 'veta e parë, gjinia femërore, rasa emërore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Nëna [e] (babai [i]) [mikes sime] nget autobusin.', 'veta e parë, gjinia femërore, rasa gjinore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikes sime] i ndodhi një fatkeqësi.', 'veta e parë, gjinia femërore, rasa dhanore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miken time] e pashë sot në mëngjes.', 'veta e parë, gjinia femërore, rasa kallëzore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë marifet e mësova [prej mikes sime].', 'veta e parë, gjinia femërore, rasa rrjedhore, prona në numrin njëjës, pronari njëjës')"></ul>
+            </div>
+    
+    
+    
+    
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miku ynë], Fisniku, ka tre fëmijë.', 'veta e parë, gjinia mashkullore, rasa emërore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Nëna [e] (babai [i]) [mikut tonë] ka punuar në universitet.', 'veta e parë, gjinia mashkullore, rasa gjinore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikut tonë] i pëlqejnë komeditë.', 'veta e parë, gjinia mashkullore, rasa dhanore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikun tonë] e njohim që nga fëmijëria.', 'veta e parë, gjinia mashkullore, rasa kallëzore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë e kemi dhuratë [prej mikut tonë].', 'veta e parë, gjinia mashkullore, rasa rrjedhore, prona në numrin njëjës, pronari shumës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikja jonë], Zana, jeton në Prishtinë.', 'veta e parë, gjinia femërore, rasa emërore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Nëna [e] (babai [i]) [mikes sonë] nget autobusin.', 'veta e parë, gjinia femërore, rasa gjinore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikes sonë] i ndodhi një fatkeqësi.', 'veta e parë, gjinia femërore, rasa dhanore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miken tonë] e pamë sot në mëngjes.', 'veta e parë, gjinia femërore, rasa kallëzore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë marifet e mësuam [prej mikes sonë].', 'veta e parë, gjinia femërore, rasa rrjedhore, prona në numrin njëjës, pronari shumës')"></ul>
+            </div>
+    
+    
+    
+    
+    
+    
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqtë e mi] shkuan në pushime.', 'veta e parë, gjinia mashkullore, rasa emërore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Dashuria [e] (nderimi [i]) [miqve të mi] është për ta patur lakmi.', 'veta e parë, gjinia mashkullore, rasa gjinore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqve të mi] u pëlqejnë komeditë.', 'veta e parë, gjinia mashkullore, rasa dhanore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqtë e mi] i njoh që nga fëmijëria.', 'veta e parë, gjinia mashkullore, rasa kallëzore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë e kam dhuratë [prej miqve të mi].', 'veta e parë, gjinia mashkullore, rasa rrjedhore, prona në numrin shumës, pronari njëjës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miket e mia] ma bënë një befasi.', 'veta e parë, gjinia femërore, rasa emërore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Dashuria [e] (nderimi [i]) [mikeve të mia] është për ta patur lakmi.', 'veta e parë, gjinia femërore, rasa gjinore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikeve të mia] u ndodhi një fatkeqësi.', 'veta e parë, gjinia femërore, rasa dhanore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miket e mia] i pashë sot në mëngjes.', 'veta e parë, gjinia femërore, rasa kallëzore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë marifet e mësova [prej mikeve të mia].', 'veta e parë, gjinia femërore, rasa rrjedhore, prona në numrin shumës, pronari njëjës')"></ul>
+            </div>
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqtë tanë] shkuan në pushime.', 'veta e parë, gjinia mashkullore, rasa emërore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Dashuria [e] (nderimi [i]) [miqve tanë] është për ta patur lakmi.', 'veta e parë, gjinia mashkullore, rasa gjinore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqve tanë] u pëlqejnë komeditë.', 'veta e parë, gjinia mashkullore, rasa dhanore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqtë tanë] i njohim që nga fëmijëria.', 'veta e parë, gjinia mashkullore, rasa kallëzore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë e kemi dhuratë [prej miqve tanë].', 'veta e parë, gjinia mashkullore, rasa rrjedhore, prona në numrin shumës, pronari shumës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miket tona] na bënë një befasi', 'veta e parë, gjinia femërore, rasa emërore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Dashuria [e] (nderimi [i]) [mikeve tona] është për ta patur lakmi.', 'veta e parë, gjinia femërore, rasa gjinore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikeve tona] u ndodhi një fatkeqësi.', 'veta e parë, gjinia femërore, rasa dhanore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miket tona] i pamë sot në mëngjes.', 'veta e parë, gjinia femërore, rasa kallëzore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë marifet e mësuam [prej mikeve tona].', 'veta e parë, gjinia femërore, rasa rrjedhore, prona në numrin shumës, pronari shumës')"></ul>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3"  x-show="veta == 'të tri vetat' || veta == 'veta e dytë'">
+
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miku yt], Fisniku, ka tre fëmijë.', 'veta e dytë, gjinia mashkullore, rasa emërore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Nëna [e] (babai [i]) [mikut tënd] ka punuar në universitet.', 'veta e dytë, gjinia mashkullore, rasa gjinore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikut tënd] i pëlqejnë komeditë.', 'veta e dytë, gjinia mashkullore, rasa dhanore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikun tënd] e njoh që nga fëmijëria.', 'veta e dytë, gjinia mashkullore, rasa kallëzore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë e kam dhuratë [prej mikut tënd].', 'veta e dytë, gjinia mashkullore, rasa rrjedhore, prona në numrin njëjës, pronari njëjës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikja jote], Zana, jeton në Prishtinë.', 'veta e dytë, gjinia femërore, rasa emërore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Nëna [e] (babai [i]) [mikes sate] nget autobusin.', 'veta e dytë, gjinia femërore, rasa gjinore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikes sate] i ndodhi një fatkeqësi.', 'veta e dytë, gjinia femërore, rasa dhanore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miken tënde] e pashë sot në mëngjes.', 'veta e dytë, gjinia femërore, rasa kallëzore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë marifet e mësova [prej mikes sate].', 'veta e dytë, gjinia femërore, rasa rrjedhore, prona në numrin njëjës, pronari njëjës')"></ul>
+            </div>
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miku juaj], Fisniku, ka tre fëmijë.', 'veta e dytë, gjinia mashkullore, rasa emërore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Nëna [e] (babai [i]) [mikut tuaj] ka punuar në universitet.', 'veta e dytë, gjinia mashkullore, rasa gjinore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikut tuaj] i pëlqejnë komeditë.', 'veta e dytë, gjinia mashkullore, rasa dhanore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikun tuaj] e njohim që nga fëmijëria.', 'veta e dytë, gjinia mashkullore, rasa kallëzore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë e kemi dhuratë [prej mikut tuaj].', 'veta e dytë, gjinia mashkullore, rasa rrjedhore, prona në numrin njëjës, pronari shumës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikja juaj], Zana, jeton në Prishtinë.', 'veta e dytë, gjinia femërore, rasa emërore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Nëna [e] (babai [i]) [mikes suaj] nget autobusin.', 'veta e dytë, gjinia femërore, rasa gjinore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikes suaj] i ndodhi një fatkeqësi.', 'veta e dytë, gjinia femërore, rasa dhanore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miken tuaj] e pamë sot në mëngjes.', 'veta e dytë, gjinia femërore, rasa kallëzore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë marifet e mësuam [prej mikes suaj].', 'veta e dytë, gjinia femërore, rasa rrjedhore, prona në numrin njëjës, pronari shumës')"></ul>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqtë e tu] shkuan në pushime.', 'veta e dytë, gjinia mashkullore, rasa emërore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Dashuria [e] (nderimi [i]) [miqve të tu] është për ta patur lakmi.', 'veta e dytë, gjinia mashkullore, rasa gjinore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqve të tu] u pëlqejnë komeditë.', 'veta e dytë, gjinia mashkullore, rasa dhanore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqtë e tu] i njoh që nga fëmijëria.', 'veta e dytë, gjinia mashkullore, rasa kallëzore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë e kam dhuratë [prej miqve të tu].', 'veta e dytë, gjinia mashkullore, rasa rrjedhore, prona në numrin shumës, pronari njëjës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miket e tua] ma bënë një befasi.', 'veta e dytë, gjinia femërore, rasa emërore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Dashuria [e] (nderimi [i]) [mikeve të tua] është për ta patur lakmi.', 'veta e dytë, gjinia femërore, rasa gjinore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikeve të tua] u ndodhi një fatkeqësi.', 'veta e dytë, gjinia femërore, rasa dhanore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miket e tua] i pashë sot në mëngjes.', 'veta e dytë, gjinia femërore, rasa kallëzore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë marifet e mësova [prej mikeve të tua].', 'veta e dytë, gjinia femërore, rasa rrjedhore, prona në numrin shumës, pronari njëjës')"></ul>
+            </div>
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqtë tuaj] shkuan në pushime.', 'veta e dytë, gjinia mashkullore, rasa emërore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Dashuria [e] (nderimi [i]) [miqve tuaj] është për ta patur lakmi.', 'veta e dytë, gjinia mashkullore, rasa gjinore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqve tuaj] u pëlqejnë komeditë.', 'veta e dytë, gjinia mashkullore, rasa dhanore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqtë tuaj] i njohim që nga fëmijëria.', 'veta e dytë, gjinia mashkullore, rasa kallëzore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë e kemi dhuratë [prej miqve tuaj].', 'veta e dytë, gjinia mashkullore, rasa rrjedhore, prona në numrin shumës, pronari shumës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miket tuaja] na bënë një befasi', 'veta e dytë, gjinia femërore, rasa emërore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Dashuria [e] (nderimi [i]) [mikeve tuaja] është për ta patur lakmi.', 'veta e dytë, gjinia femërore, rasa gjinore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikeve tuaja] u ndodhi një fatkeqësi.', 'veta e dytë, gjinia femërore, rasa dhanore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miket tuaja] i pamë sot në mëngjes.', 'veta e dytë, gjinia femërore, rasa kallëzore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë marifet e mësuam [prej mikeve tuaja].', 'veta e dytë, gjinia femërore, rasa rrjedhore, prona në numrin shumës, pronari shumës')"></ul>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3"  x-show="veta == 'të tri vetat' || veta == 'veta e tretë'">
+
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miku i tij] ([miku i saj]), Fisniku, ka tre fëmijë.', 'veta e tretë, gjinia mashkullore, rasa emërore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Nëna [e] (babai [i]) [mikut të tij] ([mikut të saj]) ka punuar në universitet.', 'veta e tretë, gjinia mashkullore, rasa gjinore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikut të tij] ([mikut të saj]) i pëlqejnë komeditë.', 'veta e tretë, gjinia mashkullore, rasa dhanore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikun e tij] ([mikun e saj])e njoh që nga fëmijëria.', 'veta e tretë, gjinia mashkullore, rasa kallëzore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë e kam dhuratë [prej mikut të tij] ([mikut të saj]).', 'veta e tretë, gjinia mashkullore, rasa rrjedhore, prona në numrin njëjës, pronari njëjës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikja e tij] ([mikja e saj]), Zana, jeton në Prishtinë.', 'veta e tretë, gjinia femërore, rasa emërore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Nëna [e] (babai [i]) [mikes së tij] ([mikes së saj]) nget autobusin.', 'veta e tretë, gjinia femërore, rasa gjinore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikes së tij] ([mikes së saj]) i ndodhi një fatkeqësi.', 'veta e tretë, gjinia femërore, rasa dhanore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miken e tij] ([miken e saj]) e pashë sot në mëngjes.', 'veta e tretë, gjinia femërore, rasa kallëzore, prona në numrin njëjës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë marifet e mësova [prej mikes së tij] ([prej mikes së saj]).', 'veta e tretë, gjinia femërore, rasa rrjedhore, prona në numrin njëjës, pronari njëjës')"></ul>
+            </div>
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miku i tyre], Fisniku, ka tre fëmijë.', 'veta e tretë, gjinia mashkullore, rasa emërore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Nëna [e] (babai [i]) [mikut të tyre] ka punuar në universitet.', 'veta e tretë, gjinia mashkullore, rasa gjinore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikut të tyre] i pëlqejnë komeditë.', 'veta e tretë, gjinia mashkullore, rasa dhanore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikun e tyre] e njohim që nga fëmijëria.', 'veta e tretë, gjinia mashkullore, rasa kallëzore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë e kemi dhuratë [prej mikut të tyre].', 'veta e tretë, gjinia mashkullore, rasa rrjedhore, prona në numrin njëjës, pronari shumës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikja e tyre], Zana, jeton në Prishtinë.', 'veta e tretë, gjinia femërore, rasa emërore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Nëna [e] (babai [i]) [mikes së tyre] nget autobusin.', 'veta e tretë, gjinia femërore, rasa gjinore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikes së tyre] i ndodhi një fatkeqësi.', 'veta e tretë, gjinia femërore, rasa dhanore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miken e tyre] e pamë sot në mëngjes.', 'veta e tretë, gjinia femërore, rasa kallëzore, prona në numrin njëjës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin njëjës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë marifet e mësuam [prej mikes së tyre].', 'veta e tretë, gjinia femërore, rasa rrjedhore, prona në numrin njëjës, pronari shumës')"></ul>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqtë e tij] ([miqtë e saj]) shkuan në pushime.', 'veta e tretë, gjinia mashkullore, rasa emërore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Dashuria [e] (nderimi [i]) [miqve të tij] ([miqve të saj]) është për ta patur lakmi.', 'veta e tretë, gjinia mashkullore, rasa gjinore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqve të tij] ([miqve të saj]) u pëlqejnë komeditë.', 'veta e tretë, gjinia mashkullore, rasa dhanore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miqtë e tij] ([miqtë e saj]) i njoh që nga fëmijëria.', 'veta e tretë, gjinia mashkullore, rasa kallëzore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë e kam dhuratë [prej miqve të tij] ([miqve të saj]).', 'veta e tretë, gjinia mashkullore, rasa rrjedhore, prona në numrin shumës, pronari njëjës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miket e tij] ([miket e saj]) ma bënë një befasi.', 'veta e tretë, gjinia femërore, rasa emërore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Dashuria [e] (nderimi [i]) [mikeve të tij] ([mikeve të saj]) është për ta patur lakmi.', 'veta e tretë, gjinia femërore, rasa gjinore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Mikeve të tij] ([mikeve të saj]) u ndodhi një fatkeqësi.', 'veta e tretë, gjinia femërore, rasa dhanore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('[Miket e tij] ([miket e saj]) i pashë sot në mëngjes.', 'veta e tretë, gjinia femërore, rasa kallëzore, prona në numrin shumës, pronari njëjës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës') && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në njëjës')" x-html="li('Këtë marifet e mësova [prej mikeve të tij] ([prej mikeve të saj]).', 'veta e tretë, gjinia femërore, rasa rrjedhore, prona në numrin shumës, pronari njëjës')"></ul>
+            </div>
+            
+            
+            
+            
+            <div class="ex bg-sky-100" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia mashkullore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqtë e tyre] shkuan në pushime.', 'veta e tretë, gjinia mashkullore, rasa emërore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Dashuria [e] (nderimi [i]) [miqve të tyre] është për ta patur lakmi.', 'veta e tretë, gjinia mashkullore, rasa gjinore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqve të tyre] u pëlqejnë komeditë.', 'veta e tretë, gjinia mashkullore, rasa dhanore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miqtë e tyre] i njohim që nga fëmijëria.', 'veta e tretë, gjinia mashkullore, rasa kallëzore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë e kemi dhuratë [prej miqve të tyre].', 'veta e tretë, gjinia mashkullore, rasa rrjedhore, prona në numrin shumës, pronari shumës')"></ul>
+            </div>
+            <div class="ex bg-red-50" x-show="gjinia == 'të dy gjinitë' || gjinia == 'gjinia femërore'">
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa emërore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miket e tyre] na bënë një befasi', 'veta e tretë, gjinia femërore, rasa emërore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa gjinore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Dashuria [e] (nderimi [i]) [mikeve të tyre] është për ta patur lakmi.', 'veta e tretë, gjinia femërore, rasa gjinore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa dhanore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Mikeve të tyre] u ndodhi një fatkeqësi.', 'veta e tretë, gjinia femërore, rasa dhanore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa kallëzore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('[Miket e tyre] i pamë sot në mëngjes.', 'veta e tretë, gjinia femërore, rasa kallëzore, prona në numrin shumës, pronari shumës')"></ul>
+                <ul x-show="(rasa == 'të gjitha rasat' || rasa == 'rasa rrjedhore') && (prona == 'prona në cilindo numër' || prona == 'prona në numrin shumës')  && (pronari == 'pronari në cilindo numër' || pronari == 'pronari në shumës')" x-html="li('Këtë marifet e mësuam [prej mikeve të tyre].', 'veta e tretë, gjinia femërore, rasa rrjedhore, prona në numrin shumës, pronari shumës')"></ul>
+            </div>
+            
+        </div>
+
+
+
+
+        
+        
+
+
+    </div>
+    <div class="h-[10rem]">&nbsp;</div>
+</body>
+
+<!-- Alpine Core -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+<script src="/js/index.alpine.js"></script>
+
+</html>
