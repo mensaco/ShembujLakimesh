@@ -14,10 +14,10 @@ window.App = () => {
                 <div x-show="open">${d}</div>
             </li>`
         },
-        veta : 'të tri vetat',
-        gjinia: 'të dy gjinitë',
-        rasa: 'të gjitha rasat',
-        prona : 'prona në cilindo numër',
-        pronari : 'pronari në cilindo numër',
+        veta : Alpine.$persist('të tri vetat'),
+        gjinia: Alpine.$persist('të dy gjinitë'),
+        rasa: Alpine.$persist('të gjitha rasat'),
+        prona : Alpine.$persist('prona në cilindo numër'),
+        pronari : Alpine.$persist('pronari në cilindo numër'),
     }
 }
