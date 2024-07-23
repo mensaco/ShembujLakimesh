@@ -22,7 +22,7 @@
             }
 
             select {
-                @apply p-1 rounded-md bg-yellow-100 text-yellow-800 flex-1 border border-yellow-500 font-semibold text-center;
+                @apply p-2 rounded-md bg-yellow-100 text-yellow-800 flex-1 border border-yellow-500 font-semibold text-center;
             }
 
             .quattrocento-regular {
@@ -40,11 +40,11 @@
             }
 
             div.ex {
-                @apply my-3 p-3 rounded-md border;
+                @apply my-1 p-3 rounded-md border;
             }
 
             div.ex > ul {
-                @apply my-3;
+                @apply my-4;
             }
 
             div.ex > ul > li > div:nth-of-type(1) {
@@ -62,7 +62,7 @@
             }
 
             .veta {
-                @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-3;
+                @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-x-3;
             }
 
             .gjm {
@@ -80,14 +80,14 @@
 
 <body x-data="App()">
     <div class="px-3">
-        <h1>Shembuj lakimi të përemrave pronorë</h1>
+        <h1 class="text-center lg:text-start bg-gray-100 p-3">Shembuj lakimi të përemrave pronorë</h1>
         <i class="text-sm">Mbështetur tek dokumenti <a
                 href="https://www.scribd.com/document/627554843/Lakimi-i-Peremrit-Pronor-i-Plotesuar"
-                target="_blank">https://www.scribd.com/document/627554843/Lakimi-i-Peremrit-Pronor-i-Plotesuar</a> i
+                target="_blank">Lakimi I Përemrit Pronor - I Plotesuar</a> i
             botuar
             nga Mirela Pacani</i>
 
-            <div class="my-3 flex flex-wrap gap-3">
+            <div class="my-5 flex flex-wrap gap-3">
                 <select x-model="veta">
                     <option value="të tri vetat">të tri vetat</option>
                     <option value="veta e parë">veta e parë</option>
